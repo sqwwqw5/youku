@@ -5,6 +5,7 @@
 // @description  kill AD
 // @author       jiangyusheng
 // @match        http://v.youku.com/*
+// @match        http://tv.sohu.com/*
 // @grant        none
 // ==/UserScript==
 (function () {
@@ -217,4 +218,18 @@
     } else {
         run(main);
     }
+//====================================CSS injector
+function addStyleString(str) {
+    var node = document.createElement('style');
+    node.innerHTML = str;
+    document.body.appendChild(node);
+}
+//====================================
+
+
+if (/youku\.com/i.test(window.location)) {//此为修复优酷CCS代码。
+
+addStyleString('.danmuoff .vpactionv5_iframe_wrap {top: auto !important;} .play_area{margin-bottom: 70px !important;}');
+
+}
 })();
